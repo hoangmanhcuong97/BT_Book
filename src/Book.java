@@ -35,7 +35,7 @@ public class Book {
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhap so luong cuon sach ban muon luu tru:");
         int n = sc.nextInt();
-        Book[] arr = creatArrBook(n);
+        Book[] arr = createArrBook(n);
 
         sc.nextLine();
         System.out.println("Nhap ten cuon sach ban muon tim kiem: ");
@@ -48,6 +48,17 @@ public class Book {
         String maCode = sc.nextLine();
         int viTri = findBookCode(maCode, arr);
         System.out.println(toString(viTri,arr));
+
+        sc.nextLine();
+        System.out.println("Nhap gia cuon sach ban muon tim kiem: ");
+        int priceBook = sc.nextInt();
+        int viTri1 = findPrice(priceBook, arr);
+        System.out.println(toString(viTri1,arr));
+
+        sc.nextLine();
+        System.out.println("Tinh tong gia cuon sach: " + calculateTotal(arr));
+
+
 
     }
     //ham tao 1 cuon sach
@@ -66,7 +77,7 @@ public class Book {
         return book1;
     }
     //ham tao mang cac cuon sach
-    public static Book[] creatArrBook(int n){
+    public static Book[] createArrBook(int n){
         Book[] arr= new Book[n];
         int i = 0;
         while(i < n){
@@ -95,6 +106,24 @@ public class Book {
             }
         }
         return index;
+    }
+
+    private  static  int findPrice(int price, Book[] arr){
+        int index = -1;
+        for (int i = 0; i < arr.length; i++) {
+            if (price == arr[i].price){
+                index = i;
+            }
+        }
+        return index;
+    }
+
+    private static int calculateTotal(Book[] arr){
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i].price;
+        }
+        return sum;
     }
     public static String toString(int index, Book[] arr){
         if(index < 0){
